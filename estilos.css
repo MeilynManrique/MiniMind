@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #f0f0f0;
+  background-color: #e0f7fa;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -13,8 +13,8 @@ body {
   background-color: white;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 280px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  width: 300px;
   text-align: center;
 }
 
@@ -29,7 +29,7 @@ input {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #00796b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -38,7 +38,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #004d40;
 }
 
 p {
@@ -47,10 +47,24 @@ p {
 }
 
 a {
-  color: #007bff;
+  color: #00796b;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.mensaje {
+  margin-bottom: 15px;
+  font-size: 14px;
+  height: 20px;
+}
+
+.mensaje.error {
+  color: red;
+}
+
+.mensaje.exito {
+  color: green;
 }
