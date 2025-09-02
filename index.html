@@ -3,31 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login y Registro Avanzado</title>
-  <link rel="stylesheet" href="estilos.css">
+  <title>MiniMind - Inicio de Sesión</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .login-box {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      width: 350px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 10px;
+      color: #0077b6;
+    }
+    p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #0077b6;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #005f87;
+    }
+    .idioma {
+      margin-top: 15px;
+    }
+    select {
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .mensaje {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #28a745;
+    }
+  </style>
 </head>
 <body>
-  <div class="formulario">
-    <h2 id="titulo">Iniciar Sesión</h2>
-
+  <div class="login-box">
+    <h1 id="titulo">Bienvenido a MiniMind</h1>
+    <p id="subtitulo">Inicia sesión para continuar</p>
+    
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="contrasena" placeholder="Contraseña">
+    <button onclick="iniciarSesion()">Iniciar Sesión</button>
+    
+    <div class="idioma">
+      <label for="lang">🌍 Idioma:</label>
+      <select id="lang" onchange="cambiarIdioma()">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+        <option value="pt">Português</option>
+      </select>
+    </div>
+    
     <div id="mensaje" class="mensaje"></div>
-
-    <form id="loginForm">
-      <input type="text" id="loginUsuario" placeholder="Usuario" required>
-      <input type="password" id="loginClave" placeholder="Contraseña" required>
-      <button type="submit">Entrar</button>
-      <p>¿No tienes cuenta? <a href="#" onclick="mostrarRegistro()">Regístrate</a></p>
-    </form>
-
-    <form id="registerForm" style="display: none;">
-      <input type="text" id="regUsuario" placeholder="Nuevo usuario (letras y números)" required>
-      <input type="password" id="regClave" placeholder="Contraseña (mín. 6 caracteres)" required>
-      <input type="password" id="regClave2" placeholder="Confirmar contraseña" required>
-      <button type="submit">Registrarse</button>
-      <p>¿Ya tienes cuenta? <a href="#" onclick="mostrarLogin()">Inicia sesión</a></p>
-    </form>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const textos = {
+      es: {
+        titulo: "Bienvenido a MiniMind",
+        subtitulo: "Inicia sesión para continuar",
+        usuario: "Usuario",
+        contrasena: "Contraseña",
+        boton: "Iniciar Sesión",
+        exito: "✅ Sesión iniciada con éxito"
+      },
+      en: {
+        titulo: "Welcome to MiniMind",
+        subtitulo: "Log in to continue",
+        usuario: "Username",
+        contrasena: "Password",
+        boton: "Log In",
+        exito: "✅ Login successful"
+      },
+      pt: {
+        titulo: "Bem-vindo ao MiniMind",
+        subtitulo: "Faça login para continuar",
+        usuario: "Usuário",
+        contrasena: "Senha",
+        boton: "Entrar",
+        exito: "✅ Login realizado com sucesso"
+      }
+    };
+
+    function cambiarIdioma() {
+      const lang = document.getElementById("lang").value;
+      document.getElementById("titulo").textContent = textos[lang].titulo;
+      document.getElementById("subtitulo").textContent = textos[lang].subtitulo;
+      document.getElementById("usuario").placeholder = textos[lang].usuario;
+      document.getElementById("contrasena").placeholder = textos[lang].contrasena;
+      document.querySelector("button").textContent = textos[lang].boton;
+      document.getElementById("mensaje").textContent = "";
+    }
+
+    function iniciarSesion() {
+      const lang = document.getElementById("lang").value;
+      document.getElementById("mensaje").textContent = textos[lang].exito;
+    }
+  </script>
 </body>
 </html>
