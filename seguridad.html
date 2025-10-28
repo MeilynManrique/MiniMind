@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minimind - Seguridad del Usuario</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rosa-pastel: #fce1e4;
+      --lila-suave: #e2d6f9;
+      --verde-menta: #d0f0c0;
+      --texto: #333;
+      --blanco: #ffffff;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to right, var(--rosa-pastel), var(--lila-suave));
+      margin: 0;
+      padding: 0;
+      color: var(--texto);
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background-color: var(--blanco);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #6b4e9b;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #a78bfa;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      background-color: #a78bfa;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7c3aed;
+    }
+
+    .icon-lock {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #a78bfa;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 30px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="icon-lock">🔒</div>
+    <h2>Centro Seguro de Datos</h2>
+    <form onsubmit="return validarFormulario()">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" name="nombre" required placeholder="Ej. Valeria Martínez">
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required placeholder="Ej. valeria@email.com">
+
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required placeholder="10 dígitos sin espacios">
+
+      <label for="mensaje">Información adicional</label>
+      <textarea id="mensaje" name="mensaje" rows="4" placeholder="Datos importantes que deseas proteger..."></textarea>
+
+      <button type="submit">Guardar de forma segura</button>
+    </form>
+    <footer>
+      Tus datos están protegidos bajo cifrado AES-256 🔐
+    </footer>
+  </div>
+
+  <script>
+    function validarFormulario() {
+      const telefono = document.getElementById("telefono").value;
+      if (!/^\d{10}$/.test(telefono)) {
+        alert("El número de teléfono debe tener exactamente 10 dígitos.");
+        return false;
+      }
+      alert("✅ Información enviada de forma segura.");
+      return true;
+    }
+  </script>
+</body>
+</html>

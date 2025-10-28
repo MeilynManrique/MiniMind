@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minimind - Propiedades Disponibles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(145deg, #e0f7fa, #f3e5f5);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #9c27b0, #00bcd4);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 2.7rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .search-bar input {
+      padding: 14px;
+      width: 60%;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      transform: scale(1.02);
+    }
+
+    .properties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 0 5%;
+      margin-bottom: 50px;
+    }
+
+    .property-card {
+      background: linear-gradient(135deg, #ffffffcc, #f1f8ffcc);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 5px solid #00bcd4;
+    }
+
+    .property-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .property-title {
+      font-size: 1.4rem;
+      color: #4a148c;
+      margin-bottom: 8px;
+    }
+
+    .property-location {
+      font-size: 0.95rem;
+      color: #00796b;
+      margin-bottom: 6px;
+    }
+
+    .property-price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #d32f2f;
+      margin-bottom: 12px;
+    }
+
+    .property-description {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      background: linear-gradient(to right, #9c27b0, #00bcd4);
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏡 Propiedades Disponibles</h1>
+    <p>Explora una amplia variedad de opciones según tus necesidades</p>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="buscar" placeholder="🔍 Buscar por nombre o ubicación..." onkeyup="filtrarPropiedades()">
+  </div>
+
+  <div class="properties" id="listaPropiedades">
+    <div class="property-card">
+      <div class="property-title">Apartamento en Medellín</div>
+      <div class="property-location">Laureles, Medellín</div>
+      <div class="property-price">$950 USD / mes</div>
+      <div class="property-description">2 habitaciones, 2 baños, cocina moderna, cerca al metro.</div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-title">Casa Familiar en Ciudad de México</div>
+      <div class="property-location">Coyoacán, CDMX</div>
+      <div class="property-price">$1,500 USD / mes</div>
+      <div class="property-description">3 habitaciones, patio grande, zona segura y tranquila.</div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-title">Departamento con Vista al Mar</div>
+      <div class="property-location">Cancún, México</div>
+      <div class="property-price">$2,300 USD / mes</div>
+      <div class="property-description">Vista al océano, piscina, gimnasio, acceso a la playa.</div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-title">Apartamento Estudio</div>
+      <div class="property-location">Lisboa, Portugal</div>
+      <div class="property-price">€700 / mes</div>
+      <div class="property-description">Perfecto para estudiantes o trabajadores remotos.</div>
+    </div>
+
+    <div class="property-card">
+      <div class="property-title">Casa de Campo</div>
+      <div class="property-location">Interior de São Paulo, Brasil</div>
+      <div class="property-price">R$ 3.200 / mes</div>
+      <div class="property-description">Amplios espacios verdes, ideal para familias y mascotas.</div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Minimind — Te ayudamos a encontrar tu lugar ideal 🌎
+  </footer>
+
+  <script>
+    function filtrarPropiedades() {
+      const input = document.getElementById('buscar').value.toLowerCase();
+      const cards = document.querySelectorAll('.property-card');
+
+      cards.forEach(card => {
+        const contenido = card.innerText.toLowerCase();
+        card.style.display = contenido.includes(input) ? "block" : "none";
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,140 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiniMind - Inicio de Sesión</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MiniMind - Login y Registro Multilenguaje</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #4facfe, #00f2fe);
+      background: linear-gradient(135deg, #c3ecff, #a8dcff);
       margin: 0;
       padding: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #333;
+      color: #03396c;
     }
-    .login-box {
-      background: #fff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      width: 350px;
+    .container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 380px;
+      max-width: 95vw;
+      padding: 40px 30px;
+      box-sizing: border-box;
       text-align: center;
     }
-    h1 {
-      margin-bottom: 10px;
-      color: #0077b6;
+    h2 {
+      margin-bottom: 25px;
+      color: #005b96;
     }
-    p {
+    select {
       margin-bottom: 20px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #a9d0f5;
       font-size: 1rem;
-      color: #555;
+      outline-color: #3399ff;
+      cursor: pointer;
+      transition: border-color 0.3s;
     }
     input {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      border: 1px solid #a9d0f5;
       border-radius: 10px;
       font-size: 1rem;
+      outline-color: #3399ff;
+      box-sizing: border-box;
     }
     button {
       width: 100%;
       padding: 12px;
-      background: #0077b6;
+      background: linear-gradient(90deg, #3399ff, #0077b6);
       border: none;
       border-radius: 10px;
-      color: #fff;
+      color: white;
       font-size: 1.1rem;
       cursor: pointer;
-      margin-top: 10px;
       transition: background 0.3s;
+      margin-bottom: 15px;
     }
     button:hover {
-      background: #005f87;
-    }
-    .idioma {
-      margin-top: 15px;
-    }
-    select {
-      padding: 8px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
+      background: linear-gradient(90deg, #0077b6, #005b96);
     }
     .mensaje {
-      margin-top: 20px;
       font-weight: bold;
+      margin-bottom: 15px;
+      min-height: 24px;
       color: #28a745;
+    }
+    /* Menu principal */
+    .menu-principal {
+      display: none;
+      width: 100%;
+      text-align: center;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #0077b6;
+      padding: 10px 0;
+      z-index: 1000;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    .top-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .top-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .top-nav a:hover {
+      color: #a8d0ff;
+    }
+    main {
+      margin-top: 80px; /* espacio debajo de la barra */
+      padding: 20px;
+    }
+    h1.bienvenida {
+      color: #005b96;
+      margin-bottom: 15px;
     }
   </style>
 </head>
 <body>
-  <div class="login-box">
-    <h1 id="titulo">Bienvenido a MiniMind</h1>
-    <p id="subtitulo">Inicia sesión para continuar</p>
-    
-    <input type="text" id="usuario" placeholder="Usuario">
-    <input type="password" id="contrasena" placeholder="Contraseña">
-    <button onclick="iniciarSesion()">Iniciar Sesión</button>
-    
-    <div class="idioma">
-      <label for="lang">🌍 Idioma:</label>
-      <select id="lang" onchange="cambiarIdioma()">
-        <option value="es">Español</option>
-        <option value="en">English</option>
-        <option value="pt">Português</option>
-      </select>
-    </div>
-    
+
+  <!-- Login / Registro -->
+  <div class="container" id="authContainer">
+    <h2 id="titulo">Iniciar Sesión</h2>
+
+    <select id="langSelect" aria-label="Seleccionar idioma">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+      <option value="pt">Português</option>
+    </select>
+
     <div id="mensaje" class="mensaje"></div>
+
+    <form id="loginForm">
+      <input type="text" id="loginUsuario" placeholder="Usuario" required />
+      <input type="password" id="loginClave" placeholder="Contraseña" required />
+      <button type="submit">Entrar</button>
+      <p><span id="textoNoCuenta">¿No tienes cuenta?</span> <a id="linkRegistro" onclick="mostrarRegistro()">Regístrate</a></p>
+    </form>
+
+    <form id="registerForm" style="display: none;">
+      <input type="text" id="regUsuario" placeholder="Nuevo usuario" required />
+      <input type="password" id="regClave" placeholder="Contraseña" required />
+      <input type="password" id="regClave2" placeholder="Confirmar contraseña" required />
+      <button type="submit">Registrarse</button>
+      <p><span id="textoYaCuenta">¿Ya tienes cuenta?</span> <a id="linkLogin" onclick="mostrarLogin()">Inicia sesión</a></p>
+    </form>
+  </div>
+
+  <!-- Menú principal -->
+  <div class="menu-principal" id="menuPrincipal">
+    <header>
+      <nav class="top-nav">
+        <a href="propiedades.html" id="linkPropiedades">Propiedades</a>
+        <a href="seguridad.html" id="linkSeguridad">Seguridad de Datos</a>
+        <a href="vias-pago.html" id="linkViasPago">Métodos de Pago</a>
+        <a href="trabajos.html" id="linkTrabajos">Trabajos</a>
+        <a href="busqueda.html" id="linkBusqueda">Búsqueda</a>
+        <a href="control-transacciones.html" id="linkTransacciones">Transacciones</a>
+        <a href="#" id="logoutBtn">🚪 Cerrar sesión</a>
+      </nav>
+    </header>
+    <main>
+      <h1 class="bienvenida" id="bienvenidaTexto">Bienvenido a MiniMind</h1>
+      <p id="instruccionesMenu">Selecciona una opción en el menú para continuar.</p>
+    </main>
   </div>
 
   <script>
     const textos = {
-      es: {
-        titulo: "Bienvenido a MiniMind",
-        subtitulo: "Inicia sesión para continuar",
-        usuario: "Usuario",
-        contrasena: "Contraseña",
-        boton: "Iniciar Sesión",
-        exito: "✅ Sesión iniciada con éxito"
-      },
-      en: {
-        titulo: "Welcome to MiniMind",
-        subtitulo: "Log in to continue",
-        usuario: "Username",
-        contrasena: "Password",
-        boton: "Log In",
-        exito: "✅ Login successful"
-      },
-      pt: {
-        titulo: "Bem-vindo ao MiniMind",
-        subtitulo: "Faça login para continuar",
-        usuario: "Usuário",
-        contrasena: "Senha",
-        boton: "Entrar",
-        exito: "✅ Login realizado com sucesso"
-      }
+      es: { tituloLogin:"Iniciar Sesión", usuarioPlaceholder:"Usuario", clavePlaceholder:"Contraseña", botonLogin:"Entrar", noCuenta:"¿No tienes cuenta?", registrate:"Regístrate", tituloRegistro:"Registro de Usuario", nuevoUsuario:"Nuevo usuario (letras y números)", claveReg:"Contraseña (mín. 6 caracteres)", claveRegConfirm:"Confirmar contraseña", botonRegistro:"Registrarse", yaCuenta:"¿Ya tienes cuenta?", iniciaSesion:"Inicia sesión", exitoLogin:"✅ Inicio de sesión exitoso", exitoRegistro:"🎉 Registro exitoso", errorClave:"❌ Las contraseñas no coinciden", errorLogin:"❌ Usuario o contraseña incorrectos", bienvenida:"Bienvenido a MiniMind", instrucciones:"Selecciona una opción en el menú para continuar.", propiedades:"Propiedades", seguridad:"Seguridad de Datos", viasPago:"Métodos de Pago", trabajos:"Trabajos", busqueda:"Búsqueda", transacciones:"Transacciones" },
+      en: { tituloLogin:"Log In", usuarioPlaceholder:"Username", clavePlaceholder:"Password", botonLogin:"Login", noCuenta:"Don't have an account?", registrate:"Register", tituloRegistro:"User Registration", nuevoUsuario:"New username", claveReg:"Password (min. 6 characters)", claveRegConfirm:"Confirm password", botonRegistro:"Register", yaCuenta:"Already have an account?", iniciaSesion:"Log In", exitoLogin:"✅ Login successful", exitoRegistro:"🎉 Registration successful", errorClave:"❌ Passwords do not match", errorLogin:"❌ Invalid username or password", bienvenida:"Welcome to MiniMind", instrucciones:"Select an option in the menu to continue.", propiedades:"Properties", seguridad:"Data Security", viasPago:"Payment Methods", trabajos:"Jobs", busqueda:"Search", transacciones:"Transactions" },
+      pt: { tituloLogin:"Entrar", usuarioPlaceholder:"Usuário", clavePlaceholder:"Senha", botonLogin:"Entrar", noCuenta:"Não tem conta?", registrate:"Registrar-se", tituloRegistro:"Registro de Usuário", nuevoUsuario:"Novo usuário", claveReg:"Senha (mín. 6 caracteres)", claveRegConfirm:"Confirmar senha", botonRegistro:"Registrar", yaCuenta:"Já tem conta?", iniciaSesion:"Entrar", exitoLogin:"✅ Login realizado com sucesso", exitoRegistro:"🎉 Registro realizado com sucesso", errorClave:"❌ As senhas não coincidem", errorLogin:"❌ Usuário ou senha incorretos", bienvenida:"Bem-vindo ao MiniMind", instrucciones:"Selecione uma opção no menu para continuar.", propiedades:"Propriedades", seguridad:"Segurança de Dados", viasPago:"Métodos de Pagamento", trabalhos:"Trabalhos", busqueda:"Busca", transacciones:"Transações" }
     };
 
-    function cambiarIdioma() {
-      const lang = document.getElementById("lang").value;
-      document.getElementById("titulo").textContent = textos[lang].titulo;
-      document.getElementById("subtitulo").textContent = textos[lang].subtitulo;
-      document.getElementById("usuario").placeholder = textos[lang].usuario;
-      document.getElementById("contrasena").placeholder = textos[lang].contrasena;
-      document.querySelector("button").textContent = textos[lang].boton;
-      document.getElementById("mensaje").textContent = "";
-    }
+    const langSelect = document.getElementById("langSelect");
+    const titulo = document.getElementById("titulo");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const mensaje = document.getElementById("mensaje");
+    const authContainer = document.getElementById("authContainer");
+    const menuPrincipal = document.getElementById("menuPrincipal");
 
-    function iniciarSesion() {
-      const lang = document.getElementById("lang").value;
-      document.getElementById("mensaje").textContent = textos[lang].exito;
+    const loginUsuario = document.getElementById("loginUsuario");
+    const loginClave = document.getElementById("loginClave");
+    const regUsuario = document.getElementById("regUsuario");
+    const regClave = document.getElementById("regClave");
+    const regClave2 = document.getElementById("regClave2");
+    const bienvenidaTexto = document.getElementById("bienvenidaTexto");
+    const instruccionesMenu = document.getElementById("instruccionesMenu");
+
+    // Actualizar textos por idioma
+    function actualizarTextos(lang) {
+      const t = textos[lang];
+      titulo.textContent = loginForm.style.display !== "none" ? t.tituloLogin : t.tituloRegistro;
+      loginUsuario.placeholder = t.usuarioPlaceholder;
+      loginClave.placeholder = t.clavePlaceholder;
+      loginForm.querySelector("button").textContent = t.botonLogin;
+      document.getElementById("textoNoCuenta").textContent = t.noCuenta;
+      document.getElementById("linkRegistro").textContent = t.registrate;
+      regUsuario.placeholder = t.nuevoUsuario;
+      regClave.placeholder = t.claveReg;
+      regClave2.placeholder = t.claveRegConfirm;
+      registerForm.querySelector("button").textContent = t.botonRegistro;
+      document.getElementById("textoYaCuenta").textContent = t.yaCuenta;
+      document.getElementById("linkLogin").textContent = t.iniciaSesion;
+      document.getElementById("linkPropiedades").textContent = t.propiedades;
+      document.getElementById("linkSeguridad").textContent = t.seguridad;
+      document.getElementById("linkViasPago").textContent = t.viasPago;
+      document.getElementById("linkTrabajos").textContent = t.trabajos;
+      document.getElementById("linkBusqueda").textContent = t.busqueda;
+      document.getElementById("linkTransacciones").textContent = t.transacciones;
+      bienvenidaTexto.textContent = t.bienvenida;
+      instruccionesMenu.textContent = t.instrucciones;
     }
+    langSelect.addEventListener("change", () => actualizarTextos(langSelect.value));
+
+    // Mostrar formularios
+    function mostrarRegistro(){ loginForm.style.display="none"; registerForm.style.display="block"; titulo.textContent=textos[langSelect.value].tituloRegistro; mensaje.textContent=""; }
+    function mostrarLogin(){ registerForm.style.display="none"; loginForm.style.display="block"; titulo.textContent=textos[langSelect.value].tituloLogin; mensaje.textContent=""; }
+    window.mostrarRegistro = mostrarRegistro;
+    window.mostrarLogin = mostrarLogin;
+
+    // Guardar usuario
+    registerForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const t = textos[langSelect.value];
+      if(regClave.value !== regClave2.value){
+        mensaje.style.color="#d9534f"; mensaje.textContent=t.errorClave; return;
+      }
+      localStorage.setItem("user_"+regUsuario.value, regClave.value);
+      localStorage.setItem("sesionActiva","true");
+      mensaje.style.color="#28a745"; mensaje.textContent=t.exitoRegistro;
+      setTimeout(()=>{ authContainer.style.display="none"; menuPrincipal.style.display="block"; },1000);
+    });
+
+    // Login
+    loginForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const t = textos[langSelect.value];
+      const user=loginUsuario.value, pass=loginClave.value;
+      const stored=localStorage.getItem("user_"+user);
+      if(stored && stored===pass){
+        localStorage.setItem("sesionActiva","true");
+        mensaje.style.color="#28a745"; mensaje.textContent=t.exitoLogin;
+        setTimeout(()=>{ authContainer.style.display="none"; menuPrincipal.style.display="block"; },1000);
+      }else{
+        mensaje.style.color="#d9534f"; mensaje.textContent=t.errorLogin;
+      }
+    });
+
+    // Cerrar sesión
+    document.getElementById("logoutBtn").addEventListener("click", e=>{
+      e.preventDefault();
+      localStorage.setItem("sesionActiva","false");
+      menuPrincipal.style.display="none";
+      authContainer.style.display="block";
+      mostrarLogin();
+    });
+
+    // Al cargar, mostrar login o menú según sesión
+    if(localStorage.getItem("sesionActiva")==="true"){
+      authContainer.style.display="none";
+      menuPrincipal.style.display="block";
+    }else{
+      authContainer.style.display="block";
+      menuPrincipal.style.display="none";
+    }
+    actualizarTextos(langSelect.value);
   </script>
+
 </body>
 </html>

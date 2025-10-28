@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minimind - Vías de Pago</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset y base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 15px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      letter-spacing: 3px;
+    }
+    p.subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      font-weight: 500;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .payment-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+      width: 260px;
+      padding: 25px 20px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      backdrop-filter: blur(8px);
+      color: #fff;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-12px) rotate(-2deg);
+      box-shadow: 0 20px 40px rgba(255,255,255,0.35);
+    }
+
+    .card img {
+      width: 70px;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .card p {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+    }
+
+    /* Formulario de pago */
+    form {
+      background: rgba(255,255,255,0.2);
+      margin-top: 50px;
+      border-radius: 25px;
+      padding: 30px 35px;
+      width: 350px;
+      box-shadow: 0 15px 40px rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+    }
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #e1f5fe;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    form select, form input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 15px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.3);
+      color: #003c6f;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
+    }
+    form select:hover, form input:hover, form select:focus, form input:focus {
+      background: rgba(255,255,255,0.5);
+      outline: none;
+    }
+
+    form button {
+      width: 100%;
+      padding: 14px;
+      background: #ff4081;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 18px #ff4081cc;
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    form button:hover {
+      background: #e040fb;
+      box-shadow: 0 8px 25px #e040fbcc;
+    }
+
+    footer {
+      margin-top: 70px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #cfd8dccc;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💳 Vías de Pago Flexibles</h1>
+  <p class="subtitle">Ofrecemos múltiples métodos para que puedas hacer tus trámites con seguridad y comodidad.</p>
+
+  <div class="payment-options">
+    <div class="card" tabindex="0">
+      <img src="https://cdn-icons-png.flaticon.com/512/349/349221.png" alt="Tarjeta de Crédito" />
+      <h3>Tarjeta de Crédito/Débito</h3>
+      <p>Paga con Visa, MasterCard, American Express y más.</p>
+    </div>
+
+    <div class="card" tabindex="0">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888870.png" alt="PayPal" />
+      <h3>PayPal</h3>
+      <p>Pago rápido y seguro desde tu cuenta PayPal.</p>
+    </div>
+
+    <div class="card" tabindex="0">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="Transferencia Bancaria" />
+      <h3>Transferencia Bancaria</h3>
+      <p>Transfiere directamente desde tu banco con seguridad.</p>
+    </div>
+
+    <div class="card" tabindex="0">
+      <img src="https://cdn-icons-png.flaticon.com/512/2306/2306103.png" alt="Criptomonedas" />
+      <h3>Criptomonedas</h3>
+      <p>Aceptamos Bitcoin, Ethereum y otras criptos populares.</p>
+    </div>
+  </div>
+
+  <form id="paymentForm">
+    <label for="method">Selecciona tu método de pago:</label>
+    <select id="method" required>
+      <option value="" disabled selected>-- Elige una opción --</option>
+      <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+      <option value="PayPal">PayPal</option>
+      <option value="Transferencia">Transferencia Bancaria</option>
+      <option value="Cripto">Criptomonedas</option>
+    </select>
+
+    <label for="amount">Monto a pagar (USD):</label>
+    <input type="number" id="amount" min="1" step="any" placeholder="Ej: 1200" required />
+
+    <button type="submit">Realizar Pago</button>
+  </form>
+
+  <footer>
+    © 2025 Minimind — Pago seguro y fácil, siempre contigo.
+  </footer>
+
+  <script>
+    const form = document.getElementById('paymentForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const method = form.method.value;
+      const amount = form.amount.value;
+
+      if (!method) {
+        alert('Por favor, selecciona un método de pago.');
+        return;
+      }
+      if (!amount || amount <= 0) {
+        alert('Por favor, ingresa un monto válido.');
+        return;
+      }
+
+      alert(`Gracias por elegir ${method}. \nProcesando pago de $${amount} USD.\n¡Pago seguro y exitoso! 🎉`);
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
