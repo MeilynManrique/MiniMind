@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #c3ecff, #a8dcff);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #03396c;
+  }
+  .container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 380px;
+    max-width: 95vw;
+    padding: 40px 30px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 25px;
+    color: #005b96;
+  }
+  select {
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #a9d0f5;
+    font-size: 1rem;
+    outline-color: #3399ff;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #a9d0f5;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline-color: #3399ff;
+    box-sizing: border-box;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #3399ff, #0077b6);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-bottom: 15px;
+  }
+  button:hover {
+    background: linear-gradient(90deg, #0077b6, #005b96);
+  }
+  .mensaje {
+    font-weight: bold;
+    margin-bottom: 15px;
+    min-height: 24px;
+    color: #28a745;
+  }
+  /* Menu principal */
+  .menu-principal {
+    display: none;
+    width: 100%;
+    text-align: center;
+  }
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #0077b6;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  }
+  .top-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .top-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .top-nav a:hover {
+    color: #a8d0ff;
+  }
+  main {
+    margin-top: 80px; /* espacio debajo de la barra */
+    padding: 20px;
+  }
+  h1.bienvenida {
+    color: #005b96;
+    margin-bottom: 15px;
+  }
