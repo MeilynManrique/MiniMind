@@ -121,7 +121,7 @@
 
       async function cargarEmpleos() {
         try {
-          const response = await fetch("http://localhost:3000/empleos");
+          const response = await fetch("https://minimind3.vercel.app/empleos");
 
           if (!response.ok) {
             throw new Error("Error consultando empleos");
@@ -161,3 +161,4 @@
 
   </html>
   >
+
