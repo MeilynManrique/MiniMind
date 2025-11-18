@@ -1,8 +1,9 @@
-  <<!DOCTYPE html>
+<<!DOCTYPE html>
   <html lang="es">
+
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minimind - Búsqueda Rápida</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <style>
@@ -15,8 +16,13 @@
       }
 
       @keyframes backgroundShift {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 100% 50%; }
+        0% {
+          background-position: 0% 50%;
+        }
+
+        100% {
+          background-position: 100% 50%;
+        }
       }
 
       header {
@@ -82,6 +88,7 @@
       }
     </style>
   </head>
+
   <body>
 
     <header>
@@ -89,16 +96,12 @@
     </header>
 
     <div class="search-container">
-      <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar trabajos o propiedades..." onkeyup="filtrar()">
+      <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar trabajos o propiedades..."
+        onkeyup="filtrar()">
     </div>
 
     <div class="card-grid" id="cardGrid">
-      <div class="card"><h3>Desarrollador Frontend</h3><p>Trabajo remoto, tiempo completo. HTML, CSS, JavaScript.</p></div>
-      <div class="card"><h3>Apartamento en Ciudad de México</h3><p>2 recámaras, 1 baño, excelente ubicación.</p></div>
-      <div class="card"><h3>Diseñador UI/UX</h3><p>Contrato freelance, proyectos web y móvil.</p></div>
-      <div class="card"><h3>Casa en Medellín</h3><p>3 habitaciones, 2 baños, patio y garaje.</p></div>
-      <div class="card"><h3>Marketing Digital</h3><p>SEO, redes sociales, campañas de anuncios.</p></div>
-      <div class="card"><h3>Propiedad en Cancún</h3><p>Departamento de lujo con vista al mar.</p></div>
+
     </div>
 
     <footer>
@@ -115,7 +118,46 @@
           cards[i].style.display = content.includes(input) ? "" : "none";
         }
       }
+
+      async function cargarEmpleos() {
+        try {
+          const response = await fetch("http://localhost:3000/empleos");
+
+          if (!response.ok) {
+            throw new Error("Error consultando empleos");
+          }
+
+          const empleos = await response.json();
+
+          mostrarEmpleos(empleos);
+        } catch (err) {
+          console.error(err);
+          document.getElementById("listaEmpleos").innerHTML =
+            "<p>Error cargando empleos</p>";
+        }
+      }
+
+      function mostrarEmpleos(empleos) {
+        const contenedor = document.getElementById("cardGrid");
+        const formatter = new Intl.NumberFormat('es-CO', {
+          style: 'currency',
+          currency: 'COP',
+          minimumFractionDigits: 0 
+        });
+
+        contenedor.innerHTML = empleos
+          .map(
+            (empleo) => `
+        <div class="card"><h3>${empleo.descripcion}</h3><p>${empleo.modalidad}</p>
+          <p>${formatter.format(empleo.salario)}</p></div>
+      `
+          )
+          .join("");
+      }
+
+      cargarEmpleos();
     </script>
   </body>
+
   </html>
->
+  >
